@@ -5,4 +5,4 @@ spam = [int(i) for i in spam] # spam jest listą, iterujemy po każdym jej eleme
 i = sum(spam)   # sumuje spam
 print(i)   # wyświetlamy sume
 #tekst z githuba
-print("vjg")
+print("jgfflf")
