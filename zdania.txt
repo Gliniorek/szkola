@@ -1,5 +1,4 @@
-Zdanie numer jeden.
-zdanie numer dwa.
+Zdanie numer jeden. zdanie numer dwa!
 Zdanie numer trzy.
-Zdanie numer cztery.
+Zdanie numer cztery?
 A to jest zdanie o numerze pięć.

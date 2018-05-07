@@ -1,5 +1,8 @@
-f = open('zdania.txt', 'r')
-zdanie = f.read()
-print("Notatka ma", len(zdanie.split(".")) - 1, "zdań.")
-
-f.close()
+import re
+with open('zdania.txt', 'r') as f:
+    tekst = f.read()
+    ilosc = len(re.split(r'[.!?]+', tekst))
+    tekst = tekst.split('. ')
+    x = 0
+    for line in tekst:
+        print(line)
