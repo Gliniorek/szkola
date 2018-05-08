@@ -1,17 +1,18 @@
 from nltk.tokenize import sent_tokenize
-file = open('zdania.txt', 'r')
+file = open('text.txt', 'r')
 f  = file.read()
 text = sent_tokenize(f)
 
-for sentence in text:
-    if sentence[0].isupper() and (('.' or '?' or '!') in sentence[-1]):
-        print(sentence)
-    elif sentence[-1] == '?':
-        print(sentence)
+def check_text(argument):
+    for sentence in text:
+        if sentence[0].isupper() and (sentence[-1] == '.' or '?' or '!'):
+            print(sentence)
 
-print('\n------------- Notes --------------------\n')
+    print('\n------------- Notes --------------------\n')
 
-for sentence in text:
-    if sentence[0].islower():
-        print(sentence)
+    for sentence in text:
+        if sentence[0].islower():
+            print(sentence)
+
+check_text(text)
 file.close()
