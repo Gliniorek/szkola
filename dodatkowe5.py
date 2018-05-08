@@ -1,15 +1,17 @@
-import re
-with open('zdania.txt', 'r') as f:
-    text = f.read()
-    count = len(re.split(r'[.!?]+', text))-1
-    text = re.split(r'[.!?]+', text)
-    x = 0
-    while count>0:
-        if text[x].islower():
-            x += 1
-            count -= 1
-            continue
-        else:
-            print(text[x])
-            count -= 1
-            x += 1
+from nltk.tokenize import sent_tokenize
+file = open('zdania.txt', 'r')
+f  = file.read()
+text = sent_tokenize(f)
+
+for sentence in text:
+    if sentence[0].isupper() and (('.' or '?' or '!') in sentence[-1]):
+        print(sentence)
+    elif sentence[-1] == '?':
+        print(sentence)
+
+print('\n------------- Notes --------------------\n')
+
+for sentence in text:
+    if sentence[0].islower():
+        print(sentence)
+file.close()
