@@ -4,12 +4,10 @@ with open('zdania.txt', 'r') as f:
     count = len(re.split(r'[.!?]+', text))-1
     text = re.split(r'[.!?]+', text)
     x = 0
-    while count>0:
-        if text[x].islower():
-            x += 1
-            count -= 1
-            continue
-        else:
-            print(text[x])
-            count -= 1
-            x += 1
+    sentence = text[x].split()
+
+    while count!= x:
+        for letter in sentence:
+            if letter[0].isupper() == True:
+                print(text[x])
+        x += 1

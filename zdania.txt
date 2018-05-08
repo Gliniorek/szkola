@@ -1,5 +1,5 @@
 Zdanie numer jeden.
-zdanie numer dwa!
-Zdanie numer trzy.
-Zdanie numer cztery?
-A to jest zdanie o numerze pięć..
+Linia numer dwa!
+Sdanie numer trzy.
+Znanie numer cztery?
+A to jest zdanie o numerze pięć??..
