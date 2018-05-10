@@ -41,5 +41,8 @@ def com_words(argument, count): # liczy 10 najczęściej pojawiających się sł
     for word, frequency in fdist.most_common(count):
         print(u'{}: {}'.format(word.title(), frequency))
 
-def repl_word(argument):
-    
+def repl_word(argument1, argument2):
+    import nltk
+    text = nltk.sent_tokenize(f)
+    text = [word.replace(argument1, argument2) for word in text]
+    print(text, ' \n\n>>> Zmiany nie zostały zapisane <<<')
