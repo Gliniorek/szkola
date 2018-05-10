@@ -1,5 +1,6 @@
+
 from nltk.tokenize import sent_tokenize
-file = open('text.txt', 'r')
+file = open('zdania.txt', 'r')
 f  = file.read()
 text = sent_tokenize(f)
 

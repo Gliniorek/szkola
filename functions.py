@@ -40,3 +40,6 @@ def com_words(argument, count): # liczy 10 najczęściej pojawiających się sł
     print('\nNajczęściej występujące słowa:')
     for word, frequency in fdist.most_common(count):
         print(u'{}: {}'.format(word.title(), frequency))
+
+def repl_word(argument):
+    
