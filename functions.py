@@ -1,9 +1,11 @@
 from nltk.tokenize import sent_tokenize
-file = open('melania.txt', 'r', encoding='UTF-8')
-f  = file.read()
+
+file = open('melania.txt', 'r')
+f = file.read()
 text = sent_tokenize(f)
 
-def show_sent(argument): # dzieli tekst na zdania
+
+def show_sent(argument):  # dzieli tekst na zdania
     x = 1
     for sentence in argument:
         if sentence[0].isupper() and (sentence[-1] == '.' or '?' or '!'):
@@ -16,12 +18,20 @@ def show_sent(argument): # dzieli tekst na zdania
         if sentence[0].islower():
             print(sentence)
 
-def show_word(argument): # dzieli tekst na wyrazy
+
+def show_word(argument):  # dzieli tekst na wyrazy
     sens = f.split()
     for word in sens:
         print(word)
 
-def com_words(argument, count): # liczy 10 najczęściej pojawiających się słów
+def count_words(argument):  # dzieli tekst na wyrazy
+    sens = f.split()
+    z = 0
+    for word in sens:
+        z += 1
+    print('Jest', z, 'słów w tym tekście')
+
+def com_words(argument, count):  # liczy 10 najczęściej pojawiających się słów
     import codecs
     import nltk
 
@@ -40,6 +50,7 @@ def com_words(argument, count): # liczy 10 najczęściej pojawiających się sł
     print('\nNajczęściej występujące słowa:')
     for word, frequency in fdist.most_common(count):
         print(u'{}: {}'.format(word.title(), frequency))
+
 
 def repl_word(argument1, argument2):
     import nltk
