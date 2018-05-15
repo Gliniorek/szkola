@@ -57,3 +57,11 @@ def repl_word(argument1, argument2):
     text = nltk.sent_tokenize(f)
     text = [word.replace(argument1, argument2) for word in text]
     print(text, ' \n\n>>> Zmiany nie zostały zapisane <<<')
+
+def len_words(argument):
+    senstence = f.split()
+    stop_words = {'na', 'sie', 'że', 'nie'}
+    i = [word for word in senstence if len(word) > 2 and word not in stop_words]
+    print('Wyłączająć \'stop words\':')
+    print('Najdłuższe słowo w tekście to:', max(i,key=len))
+    print('Najkrótsze słowo w tekście to:', min(i, key=len))
