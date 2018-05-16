@@ -24,14 +24,14 @@ def show_word(argument):  # dzieli tekst na wyrazy
     for word in sens:
         print(word)
 
-def count_words(argument):  # dzieli tekst na wyrazy
+def count_words(argument):  # liczy ilość słów
     sens = f.split()
     z = 0
     for word in sens:
         z += 1
     print('Jest', z, 'słów w tym tekście')
 
-def com_words(argument, count):  # liczy 10 najczęściej pojawiających się słów
+def com_words(argument, count):  # liczy count(liczba) najczęściej pojawiających się słów
     import codecs
     import nltk
 
@@ -52,13 +52,13 @@ def com_words(argument, count):  # liczy 10 najczęściej pojawiających się s�
         print(u'{}: {}'.format(word.title(), frequency))
 
 
-def repl_word(argument1, argument2):
+def repl_word(argument1, argument2): #zmienia wybrane słowo na podane słowo
     import nltk
     text = nltk.sent_tokenize(f)
     text = [word.replace(argument1, argument2) for word in text]
     print(text, ' \n\n>>> Zmiany nie zostały zapisane <<<')
 
-def len_words(argument):
+def len_words(argument): #pokazuje najdłuższe i nakrótsze słowo spełniające wymogi
     senstence = f.split()
     stop_words = {'na', 'sie', 'że', 'nie'}
     i = [word for word in senstence if len(word) > 2 and word not in stop_words]
