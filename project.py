@@ -1,5 +1,6 @@
 from functions import *
 from nltk.tokenize import sent_tokenize
+#some project scratch
 
 opt = input('A: Wyświetl tekst\n'
             'B: Wyświetl teskt z podziałem z zdania\n'
