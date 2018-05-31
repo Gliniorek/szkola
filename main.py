@@ -1,23 +1,28 @@
-import time
 from functions import *
 from nltk.tokenize import sent_tokenize
-time.sleep(0.5)
-
 
 opt = None
-while opt != 'exit':
-    file = open('melania.txt', 'r')
+choosen_text = ''
+
+if choosen_text == '':
+    search_for_text()
+    file = open(choose_text(), 'r', encoding='UTF-8')
+    f = file.read()
+    text = sent_tokenize(f)
+else:
+    file = open(str(choose_text()), 'r')
     f = file.read()
     text = sent_tokenize(f)
 
-    opt = input("""\nDostępne opcje przetwarzania wczytanego tekstu:
+while opt != 'exit':
+    opt = input(f"""\nDostępne opcje przetwarzania wczytanego tekstu [{file.name}]:
                 A: Wyświetl tekst.
                 B: Charakter tekstu (pozytywny/negatywny/neutralny).
                 C: Wyświetl słowa niesklasyfikowane pod względem nacechowania.
                 D: Dodaj słowo do leksykonu.
                 E: Sprawdź nacechowanie podanego słowa.
                 Powiedz co chcesz zrobić? \n
-                Wpisz exit aby zakończyć działanie programu""")
+                 Wpisz exit aby zakończyć działanie programu""")
     print('\n')
     opt = opt.lower()
 
@@ -31,17 +36,19 @@ while opt != 'exit':
             continue
 # Sprawdza tekst i pokazuje czy jest poz., neg. w procentach i % słów neutralnych oraz ilość słów niesklasyfikowanych
     elif opt == 'b':
-        pass
+        check_text_character(text)
 # Wyświetla słowa niesklasyfikiwane
     elif opt == 'c':
-        pass
+        print('Opcja jeszce niedostępna')
 # Możliwość dodania nowego słowa do leksykonu i określenia jego nacechowania
     elif opt == 'd':
-        pass
+        print('Opcja jeszce niedostępna')
 # Sprawdza nacechowanie podanego słowa, jeśli jest dostępne w leksykonie
     elif opt == 'e':
-        pass
+        print('Opcja jeszce niedostępna')
 # Kończy działanie programu
     elif opt == 'exit':
         print('Program zakończono.')
         break
+    file.close()
+

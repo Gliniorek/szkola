@@ -1,4 +1,4 @@
-from functions import *
+from funkcje import *
 from nltk.tokenize import sent_tokenize
 #some project scratch
 
