@@ -4,6 +4,8 @@ file = open('melania.txt', 'r')
 f = file.read()
 text = sent_tokenize(f)
 
+def show_text(argument):
+    print(argument, '\n' * 2)
 
 def show_sent(argument):  # dzieli tekst na zdania
     x = 1
@@ -17,7 +19,6 @@ def show_sent(argument):  # dzieli tekst na zdania
     for sentence in argument:
         if sentence[0].islower():
             print(sentence)
-
 
 def show_word(argument):  # dzieli tekst na wyrazy
     sens = f.split()
@@ -50,7 +51,6 @@ def com_words(argument, count):  # liczy count(liczba) najczęściej pojawiając
     print('\nNajczęściej występujące słowa:')
     for word, frequency in fdist.most_common(count):
         print(u'{}: {}'.format(word.title(), frequency))
-
 
 def repl_word(argument1, argument2): #zmienia wybrane słowo na podane słowo
     import nltk
