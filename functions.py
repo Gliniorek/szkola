@@ -23,12 +23,23 @@ def show_sent(argument):  # dzieli tekst na zdania
         if sentence[0].isupper() and (sentence[-1] == '.' or '?' or '!'):
             print(x, sentence)
             x += 1
-def check_text_character():
-    print('Opcja jeszce niedostępna')
+
+# W trakcie budowy
+def check_text_character(argument):
     p = open('positive-words.txt', 'r')
+    pos_r = p.read()
+    pos_s = pos_r.split()
+    text_f = argument.split()
+    text_f = [text for text in text_f]
+    pos = [pos_words for pos_words in pos_s]
+    for effect in text_f:
+        if effect in pos:
+            print(effect)
+
+
     n = open('negative-words.txt', 'r')
-    pos = p.read()
     neg = n.read()
+    for_neg = neg.split()
 
 # def show_word(argument):  # dzieli tekst na wyrazy
 #     sens = f.split()

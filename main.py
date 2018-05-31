@@ -36,7 +36,7 @@ while opt != 'exit':
             continue
 # Sprawdza tekst i pokazuje czy jest poz., neg. w procentach i % słów neutralnych oraz ilość słów niesklasyfikowanych
     elif opt == 'b':
-        check_text_character(text)
+        check_text_character(f)
 # Wyświetla słowa niesklasyfikiwane
     elif opt == 'c':
         print('Opcja jeszce niedostępna')
