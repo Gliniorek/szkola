@@ -5,14 +5,12 @@ opt = None
 choosen_text = ''
 
 if choosen_text == '':
-    search_for_text()
-    file = open(choose_text(), 'r', encoding='UTF-8')
+    file = open(str(search_for_text()), 'r', encoding='UTF-8')
     f = file.read()
+    file_text = f.split()
     text = sent_tokenize(f)
 else:
-    file = open(str(choose_text()), 'r')
-    f = file.read()
-    text = sent_tokenize(f)
+    exit('Niespodziewany błąd podczas wczytywania pliku tekstowego.')
 
 while opt != 'exit':
     opt = input(f"""\nDostępne opcje przetwarzania wczytanego tekstu [{file.name}]:
@@ -36,10 +34,13 @@ while opt != 'exit':
             continue
 # Sprawdza tekst i pokazuje czy jest poz., neg. w procentach i % słów neutralnych oraz ilość słów niesklasyfikowanych
     elif opt == 'b':
-        check_text_character(f)
+        print(check_positives(file_text))
+        count_positives(file_text)
+        print(check_negatives(file_text))
+        count_negatives(file_text)
 # Wyświetla słowa niesklasyfikiwane
     elif opt == 'c':
-        print('Opcja jeszce niedostępna')
+        print(count_nochar(file_text))
 # Możliwość dodania nowego słowa do leksykonu i określenia jego nacechowania
     elif opt == 'd':
         print('Opcja jeszce niedostępna')

@@ -1,57 +1,92 @@
+# Wyszukiwuje pliki tekstowe w aktualnym katalogu
 def search_for_text():
     import os, fnmatch, time
-    list_of_files = os.listdir('.')
-    pattern = '*.txt'
-    print('Wyszukiwanie plików...')
-    time.sleep(1.2)
-    for entry in list_of_files:
+    print('Wykryto powyższe teksty w katalogu:')
+    time.sleep(0.5)
+    listOfFiles = os.listdir('.')
+    pattern = "*.txt"
+    for entry in listOfFiles:
         if fnmatch.fnmatch(entry, pattern):
             print(entry)
+    choosen_text = input('Który z tych tekstów chcesz wczytać?')
+    return str(choosen_text)
 
+# Wybieranie pliku tekstowego do dalszej obróbki
 def choose_text():
-    choosen_text = input('Który z powyższych plików tekstowych chcesz wybrać? [nazwa.txt]')
+    choosen_text = input('Który z powyższych plików tekstowych chcesz wybrać? [nazwa.txt] \n')
     if choosen_text == 'positive-words.txt' or choosen_text == 'negative-words.txt':
         exit('Błąd dostępu. Program zakończono.')
     return str(choosen_text)
 
+
+# Wyświetla wczytany tekst z oryginalnym formatowaniem
 def show_text(argument):
     print(argument, '\n' * 2)
 
-def show_sent(argument):  # dzieli tekst na zdania
+# Dzieli wczytany tekst na zdania i je numeruje
+def show_sent(argument):
     x = 1
     for sentence in argument:
         if sentence[0].isupper() and (sentence[-1] == '.' or '?' or '!'):
             print(x, sentence)
             x += 1
 
-# W trakcie budowy
-def check_text_character(argument):
-    p = open('positive-words.txt', 'r')
-    pos_r = p.read()
-    pos_s = pos_r.split()
-    text_f = argument.split()
-    text_f = [text for text in text_f]
-    pos = [pos_words for pos_words in pos_s]
-    for effect in text_f:
-        if effect in pos:
-            print(effect)
+# Kolejne 4 funkcje sprawdzają jakie są negatywne i pozytywne słowa
+# Oraz sprawdzają ich ilość
+def check_positives(argument):
+    l_file = open(r'positive-words.txt', 'r', encoding='UTF-8')
+    f = l_file.read()
+    lex = f.split()
+    i = [i for i in argument if i in lex]
+    i = list(set(i))
+    return i
 
+def check_negatives(argument):
+    l_file = open(r'negative-words.txt', 'r', encoding='UTF-8')
+    f = l_file.read()
+    lex = f.split()
+    i = [i for i in argument if i in lex]
+    i = list(set(i))
+    return i
 
-    n = open('negative-words.txt', 'r')
-    neg = n.read()
-    for_neg = neg.split()
+def count_positives(argument):
+    j = 0
+    for spam in argument:
+        if spam in check_positives(argument):
+            j += 1
+    print(f'Razem jest {j} pozytywnych słów.')
+
+def count_negatives(argument):
+    j = 0
+    for spam in argument:
+        if spam in check_negatives(argument):
+            j += 1
+    print(f'Razem jest {j} negatywnych słów.')
+
+# Liczy ilość słów niesklasyfikowanych w leksykonach
+def count_nochar(argument):
+    j = 0
+    i = 0
+    for spam in argument:
+        if spam in check_positives(argument):
+            j += 1
+    for spam in argument:
+        if spam in check_negatives(argument):
+            i += 1
+    x = i + j
+    return x
 
 # def show_word(argument):  # dzieli tekst na wyrazy
 #     sens = f.split()
 #     for word in sens:
 #         print(word)
 #
-# def count_words(argument):  # liczy ilość słów
-#     sens = f.split()
-#     z = 0
-#     for word in sens:
-#         z += 1
-#     print('Jest', z, 'słów w tym tekście')
+def count_words(argument):  # liczy ilość słów
+    sens = f.split()
+    z = 0
+    for word in sens:
+        z += 1
+    print('Jest', z, 'słów w tym tekście')
 #
 # def com_words(argument, count):  # liczy count(liczba) najczęściej pojawiających się słów
 #     import codecs
