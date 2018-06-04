@@ -32,24 +32,33 @@ while opt != 'exit':
         if opt == 't':
             show_sent(text)
             continue
+
 # Sprawdza tekst i pokazuje czy jest poz., neg. w procentach i % słów neutralnych oraz ilość słów niesklasyfikowanych
     elif opt == 'b':
-        print(check_positives(file_text))
-        count_positives(file_text)
-        print(check_negatives(file_text))
-        count_negatives(file_text)
+        print(f'Słowa pozytywne to: {check_positives(file_text)}')
+        print(f'Słowa negatywne to: {check_negatives(file_text)}')
+        print(f'Jest {count_nochar(file_text)} niesklasyfikowanych.')
+        z = count_words(file_text)
+        x = (count_positives(file_text) / z) * 100
+        y = (count_negatives(file_text) / z) * 100
+        print(f'Słowa pozytywne stanowią {round(x, 2)}% tekstu, natomiast słowa negatywne to {round(y,2)}% tekstu.' )
 # Wyświetla słowa niesklasyfikiwane
     elif opt == 'c':
-        print(count_nochar(file_text))
+        print(r'10 pierwszych wyrazów, które się są sklasyfikowane w leksykowanach:')
+        print(f'Jest {count_nochar(file_text)} niesklasyfikowanych.')
+
 # Możliwość dodania nowego słowa do leksykonu i określenia jego nacechowania
     elif opt == 'd':
         print('Opcja jeszce niedostępna')
+
 # Sprawdza nacechowanie podanego słowa, jeśli jest dostępne w leksykonie
     elif opt == 'e':
-        print('Opcja jeszce niedostępna')
+        word = input('Wpisz słowo, którego charakter chcesz sprawdzić:')
+        print(show_char(str(word)))
 # Kończy działanie programu
     elif opt == 'exit':
         print('Program zakończono.')
         break
-    file.close()
+
+file.close()
 

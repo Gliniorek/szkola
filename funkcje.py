@@ -22,8 +22,9 @@ def show_sent(argument):  # dzieli tekst na zdania
 
 def show_word(argument):  # dzieli tekst na wyrazy
     sens = f.split()
-    for word in sens:
-        print(word)
+    i = [i for i in sens]
+    print(i[:10])
+
 
 def count_words(argument):  # liczy ilość słów
     sens = f.split()

@@ -54,70 +54,60 @@ def count_positives(argument):
     for spam in argument:
         if spam in check_positives(argument):
             j += 1
-    print(f'Razem jest {j} pozytywnych słów.')
+    return j
 
 def count_negatives(argument):
     j = 0
     for spam in argument:
         if spam in check_negatives(argument):
             j += 1
-    print(f'Razem jest {j} negatywnych słów.')
+    return j
 
 # Liczy ilość słów niesklasyfikowanych w leksykonach
 def count_nochar(argument):
-    j = 0
-    i = 0
-    for spam in argument:
-        if spam in check_positives(argument):
-            j += 1
-    for spam in argument:
-        if spam in check_negatives(argument):
-            i += 1
-    x = i + j
-    return x
+    p_file = open(r'positive-words.txt', 'r', encoding='UTF-8')
+    p = p_file.read()
+    po = p.split()
+    n_file = open(r'negative-words.txt', 'r', encoding='UTF-8')
+    n = n_file.read()
+    no = n.split()
 
-# def show_word(argument):  # dzieli tekst na wyrazy
-#     sens = f.split()
-#     for word in sens:
-#         print(word)
-#
-def count_words(argument):  # liczy ilość słów
-    sens = f.split()
+    a = [a for a in argument if a.lower() not in po and a.lower() not in no]
+    print(list(set(a[:10])))
     z = 0
-    for word in sens:
+    for word in argument:
+        if word not in po:
+            if word not in no:
+                z += 1
+    return z
+
+# liczy ilość słów
+def count_words(argument):
+    z = 0
+    for word in argument:
         z += 1
-    print('Jest', z, 'słów w tym tekście')
-#
-# def com_words(argument, count):  # liczy count(liczba) najczęściej pojawiających się słów
-#     import codecs
-#     import nltk
-#
-#     default_stopwords = set(nltk.corpus.stopwords.words('english'))
-#     custom_stopwords = {'na', 'się', 'że', 'nie'}
-#     all_stopwords = default_stopwords | custom_stopwords
-#     fp = codecs.open('melania.txt', 'r', 'utf-8')
-#
-#     words = nltk.word_tokenize(fp.read())
-#     words = [word for word in words if len(word) > 1]
-#     words = [word for word in words if not word.isnumeric()]
-#     words = [word.lower() for word in words]
-#     words = [word for word in words if word not in all_stopwords]
-#
-#     fdist = nltk.FreqDist(words)
-#     print('\nNajczęściej występujące słowa:')
-#     for word, frequency in fdist.most_common(count):
-#         print(u'{}: {}'.format(word.title(), frequency))
-#
-# def repl_word(argument1, argument2): #zmienia wybrane słowo na podane słowo
-#     import nltk
-#     text = nltk.sent_tokenize(f)
-#     text = [word.replace(argument1, argument2) for word in text]
-#     print(text, ' \n\n>>> Zmiany nie zostały zapisane <<<')
-#
-# def len_words(argument): #pokazuje najdłuższe i nakrótsze słowo spełniające wymogi
-#     senstence = f.split()
-#     stop_words = {'na', 'sie', 'że', 'nie'}
-#     i = [word for word in senstence if len(word) > 2 and word not in stop_words]
-#     print('Wyłączająć \'stop words\':')
-#     print('Najdłuższe słowo w tekście to:', max(i,key=len))
-#     print('Najkrótsze słowo w tekście to:', min(i, key=len))
+    return z
+
+# Sprawdza w którym leksykonie jest dane słowo
+def check_char(word):
+    pos = open(r'positive-words.txt', 'r', encoding='UTF-8').read().split()
+    neg = open(r'negative-words.txt', 'r', encoding='UTF-8').read().split()
+    if word in pos:
+        return 'pos'
+    elif word in neg:
+        return 'neg'
+    else:
+        return 'non'
+
+# Sprawdza charakter słowa i sprawa info, o charakterze
+def show_char(word):
+    word = word.lower()
+    check = check_char(word)
+    if check == 'pos':
+        return f'Słowo {word} ma charakter pozytywny.'
+    elif check == 'neg':
+        return  f'Słowo {word} ma charakter negatywny.'
+    elif check == 'non':
+        return f'Słowo {word} nie występuje w leksykonie. \n  Jeśli chcesz dodać słowo do leksykonu => wybierz "D"'
+    else:
+        return 'Wystąpił jakiś błąd.'
