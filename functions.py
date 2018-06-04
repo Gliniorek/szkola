@@ -73,7 +73,7 @@ def count_nochar(argument):
     no = n.split()
 
     a = [a for a in argument if a.lower() not in po and a.lower() not in no]
-    print(list(set(a[:10])))
+    print(f'10 pierwszych niesklasyfikowanych słów: {list(set(a[:10]))}')
     z = 0
     for word in argument:
         if word not in po:
@@ -92,12 +92,15 @@ def count_words(argument):
 def check_char(word):
     pos = open(r'positive-words.txt', 'r', encoding='UTF-8').read().split()
     neg = open(r'negative-words.txt', 'r', encoding='UTF-8').read().split()
+    non = open(r'neutral-words.txt', 'r', encoding='UTF-8').read().split()
     if word in pos:
         return 'pos'
     elif word in neg:
         return 'neg'
-    else:
+    elif word in non:
         return 'non'
+    else:
+        return 'Error'
 
 # Sprawdza charakter słowa i sprawa info, o charakterze
 def show_char(word):
@@ -108,6 +111,23 @@ def show_char(word):
     elif check == 'neg':
         return  f'Słowo {word} ma charakter negatywny.'
     elif check == 'non':
+        return  f'Słowo {word} ma charakter neutralny.'
+    elif check == 'Error':
         return f'Słowo {word} nie występuje w leksykonie. \n  Jeśli chcesz dodać słowo do leksykonu => wybierz "D"'
     else:
         return 'Wystąpił jakiś błąd.'
+
+# Dodaje słowo do wybranego leksykonu
+def adding(word, leks):
+    if leks == 'pos':
+        file = open(r'positive-words.txt', 'a', encoding='UTF-8')
+        file.write(f'\n{word}')
+        return f'Słowo {word} zostało dodane do leksykonu słów pozytywnych.'
+    elif leks == 'neg':
+        file = open(r'negative-words.txt', 'a', encoding='UTF-8')
+        file.write(f'\n{word}')
+        return f'Słowo {word} zostało dodane do leksykonu słów negatywnych.'
+    elif leks == 'non':
+        file = open(r'neutral-words.txt', 'a', encoding='UTF-8')
+        file.write(f'\n{word}')
+        return f'Słowo {word} zostało dodane do leksykonu słów neutralnych.'

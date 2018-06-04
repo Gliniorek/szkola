@@ -45,11 +45,16 @@ while opt != 'exit':
 # Wyświetla słowa niesklasyfikiwane
     elif opt == 'c':
         print(r'10 pierwszych wyrazów, które się są sklasyfikowane w leksykowanach:')
-        print(f'Jest {count_nochar(file_text)} niesklasyfikowanych.')
+        print(f'Jest {count_nochar(file_text)} niesklasyfikowanych słów.')
 
 # Możliwość dodania nowego słowa do leksykonu i określenia jego nacechowania
     elif opt == 'd':
-        print('Opcja jeszce niedostępna')
+        word_check = input('Jakie słowo chcesz dodać? \n')
+        if check_char(word_check) == 'Error':
+            add_char = input(f'Jakie charakter ma słowo {word_check}? Pozytywny (wpisz pos) / negatywny (wpisz neg) czy neutralny (wpisz non)')
+            print(adding(word_check, add_char))
+        else:
+            print('Słowo jest już dodane z leksykonów.')
 
 # Sprawdza nacechowanie podanego słowa, jeśli jest dostępne w leksykonie
     elif opt == 'e':
