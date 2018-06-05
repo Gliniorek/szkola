@@ -1,5 +1,4 @@
 from functions import *
-from nltk.tokenize import sent_tokenize
 
 opt = None
 choosen_text = ''
@@ -8,6 +7,7 @@ if choosen_text == '':
     file = open(str(search_for_text()), 'r', encoding='UTF-8')
     f = file.read()
     file_text = f.split()
+    from nltk.tokenize import sent_tokenize
     text = sent_tokenize(f)
 else:
     exit('Niespodziewany błąd podczas wczytywania pliku tekstowego.')

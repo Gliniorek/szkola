@@ -71,8 +71,11 @@ def count_nochar(argument):
     n_file = open(r'negative-words.txt', 'r', encoding='UTF-8')
     n = n_file.read()
     no = n.split()
+    neu_file = open(r'negative-words.txt', 'r', encoding='UTF-8')
+    neu = n_file.read()
+    neut = n.split()
 
-    a = [a for a in argument if a.lower() not in po and a.lower() not in no]
+    a = [a for a in argument if a.lower() not in po and a.lower() not in no and a.lower() not in neut]
     print(f'10 pierwszych niesklasyfikowanych słów: {list(set(a[:10]))}')
     z = 0
     for word in argument:
@@ -119,6 +122,7 @@ def show_char(word):
 
 # Dodaje słowo do wybranego leksykonu
 def adding(word, leks):
+    word, leks = word.lower(), leks.lower()
     if leks == 'pos':
         file = open(r'positive-words.txt', 'a', encoding='UTF-8')
         file.write(f'\n{word}')
